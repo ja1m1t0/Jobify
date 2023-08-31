@@ -9,7 +9,7 @@ let jobs = [
   { id: nanoid(), company: "google", position: "back-end" },
 ];
 
-console.log(jobs);
+// console.log(jobs);
 
 // fetch("https://www.course-api.com/react-useReducer-cart-project")
 //   .then((res) => res.json())
