@@ -13,11 +13,14 @@ import authRouter from "./routes/authRouter.js";
 
 // middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
+import { authenticateUser } from "./middleware/authMiddleware.js";
+import cookieParser from "cookie-parser";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -25,12 +28,13 @@ app.get("/", (req, res) => {
 });
 
 // ALL ROUTES AND CONTROLLERS IN HERE:
-app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/jobs", authenticateUser, jobRouter);
 app.use("/api/v1/auth", authRouter);
-app.use(errorHandlerMiddleware);
+
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
+app.use(errorHandlerMiddleware);
 
 app.post("/", (req, res) => {
   console.log(req);

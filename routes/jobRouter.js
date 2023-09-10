@@ -12,9 +12,6 @@ import {
   validateIdParam,
 } from "../middleware/validationMiddleware.js";
 
-// router.get("/", getAllJobs);
-// router.post("/", createJob);
-
 router.route("/").get(getAllJobs).post(validateJobInput, createJob);
 router
   .route("/:id")
