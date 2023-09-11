@@ -3,7 +3,7 @@ import User from "../models/UserModel.js";
 import Job from "../models/JobModel.js";
 
 export const getCurrentUser = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.userId });
+  const user = await User.findOne({ _id: req.user.userId.toString() });
   const userWithoutPassword = user.toJSON();
   res.status(StatusCodes.OK).json({ user: userWithoutPassword });
 };
@@ -17,6 +17,9 @@ export const getApplicationStats = async (req, res) => {
 export const updateUser = async (req, res) => {
   const obj = { ...req.body };
   delete obj.password;
-  const updatedUser = await User.findByIdAndUpdate(req.user.userId, obj);
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.userId.toString(),
+    obj
+  );
   res.status(StatusCodes.OK).json({ msg: "update user" });
 };

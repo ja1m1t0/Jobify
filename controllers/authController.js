@@ -8,7 +8,7 @@ export const register = async (req, res) => {
   const isFirstAccount = (await User.countDocuments()) === 0;
   req.body.role = isFirstAccount ? "admin" : "user";
 
-  const hashedPassword = await hashPassword(req.body.password);
+  const hashedPassword = await hashPassword(req.body.password.toString());
   req.body.password = hashedPassword;
 
   const user = await User.create(req.body);
@@ -16,9 +16,10 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email.toString() });
   const isValidUser =
-    user && (await comparePassword(req.body.password, user.password));
+    user &&
+    (await comparePassword(req.body.password.toString(), user.password));
   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
 
   const token = createJWT({ userId: user._id, role: user.role });
