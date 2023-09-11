@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "setup-project": "npm install && cd client && npm install",
-    "dev": "nodemon server.js",
-    "test": "jest --watchAll"
+    "server": "nodemon server.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
