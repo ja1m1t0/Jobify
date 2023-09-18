@@ -8,7 +8,7 @@ export const getAllJobs = async (req, res) => {
 
 export const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId.toString();
-  const job = await Job.create(req.body.toString());
+  const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({ job });
 };
 
