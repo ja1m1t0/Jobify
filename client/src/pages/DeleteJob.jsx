@@ -6,7 +6,7 @@ export const action = async ({ params }) => {
   try {
     await customFetch.delete(`/jobs/${params.id}`);
 
-    toast.success("Job deleted successfully");
+    toast.success("Job deleted successfully", { autoClose: 1500 });
   } catch (error) {
     toast.error(error?.response?.data?.msg);
   }
