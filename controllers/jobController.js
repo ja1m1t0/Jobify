@@ -12,7 +12,7 @@ export const createJob = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ job });
 };
 
-export const getSingleJob = async (req, res) => {
+export const getJob = async (req, res) => {
   const job = await Job.findById(req.params.id.toString());
   res.status(StatusCodes.OK).json({ job });
 };
@@ -20,7 +20,7 @@ export const getSingleJob = async (req, res) => {
 export const updateJob = async (req, res) => {
   const updatedJob = await Job.findByIdAndUpdate(
     req.params.id.toString(),
-    req.body.toString(),
+    req.body,
     {
       new: true,
     }
