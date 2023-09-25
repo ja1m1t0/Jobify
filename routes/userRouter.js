@@ -1,6 +1,4 @@
 import { Router } from "express";
-const router = Router();
-
 import {
   getCurrentUser,
   getApplicationStats,
@@ -8,6 +6,8 @@ import {
 } from "../controllers/userController.js";
 import { validateUpdateUserInput } from "../middleware/validationMiddleware.js";
 import { authorizePermissions } from "../middleware/authMiddleware.js";
+
+const router = Router();
 
 router.get("/current-user", getCurrentUser);
 router.get("/admin/app-stats", [

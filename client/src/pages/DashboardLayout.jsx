@@ -2,7 +2,6 @@ import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Dashboard";
 import { BigSidebar, Navbar, SmallSidebar } from "../components";
 import { createContext, useContext, useState } from "react";
-import { checkDefaultTheme } from "../App";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 
@@ -31,7 +30,6 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
   };
 
   const toggleSidebar = () => {
-    console.log("toggleSidebar");
     setShowSidebar(!showSidebar);
   };
 
@@ -67,5 +65,6 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
     </DashboardContext.Provider>
   );
 };
+
 export const useDashboardContext = () => useContext(DashboardContext);
 export default DashboardLayout;

@@ -22,6 +22,7 @@ import { loader as allJobsLoader } from "./pages/AllJobs";
 import { action as editJobAction } from "./pages/EditJob";
 import { loader as editJobLoader } from "./pages/EditJob";
 import { action as deleteJobAction } from "./pages/DeleteJob";
+import { loader as adminLoader } from "./pages/Admin";
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("dark-theme") === "true";
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
           { path: "stats", element: <Stats /> },
           { path: "all-jobs", element: <AllJobs />, loader: allJobsLoader },
           { path: "profile", element: <Profile /> },
-          { path: "admin", element: <Admin /> },
+          { path: "admin", element: <Admin />, loader: adminLoader },
           {
             path: "edit-job/:id",
             element: <EditJob />,
@@ -70,30 +71,6 @@ const router = createBrowserRouter([
           { path: "delete-job/:id", action: deleteJobAction },
         ],
       },
-      // {
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
-      // {
-      //   path: "/admin",
-      //   element: <Admin />,
-      // },
-      // {
-      //   path: "/addjob",
-      //   element: <AddJob />,
-      // },
-      // {
-      //   path: "/alljobs",
-      //   element: <AllJobs />,
-      // },
-      // {
-      //   path: "/editjob",
-      //   element: <EditJob />,
-      // },
-      // {
-      //   path: "/deletejob",
-      //   element: <DeleteJob />,
-      // },
       {
         path: "/stats",
         element: <Stats />,
