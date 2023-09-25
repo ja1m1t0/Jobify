@@ -1,5 +1,7 @@
 #### Complete App
 
+Jimmy Neutron learning version
+
 [Jobify](https://jobify.live/)
 
 #### Create React APP
